@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<link rel="stylesheet" href="assets/css/style.css">
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
+		<title>Solutions Reporting App</title>
+	</head>
+	<body class="bg-light">
+		<div class="container">
+			<div class="py-5 text-center">
+				<img class="headshots animation1 mx-auto mb-4" src="assets/img/1.jpeg" alt="" width="72" height="72">
+				<img class="headshots animation2 mx-auto mb-4" src="assets/img/2.png" alt="" width="72" height="72"><br>
+				<img class="headshots animation2 mx-auto mb-4" src="assets/img/4.jpeg" alt="" width="72" height="72">
+				<img class="headshots animation1 mx-auto mb-4" src="assets/img/3.jpeg" alt="" width="72" height="72"><br><br>
+				<h2>Solutions Reporting Dashboard</h2><br>
+				<div class="dataForm">
+					<div class="input-group">
+	          <input type="text" class="form-control" placeholder="Gong API data" id="inputGongData">
+	          <div class="input-group-append">
+	            <button type="submit" class="btn btn-primary" id="processData">Process data</button>
+	          </div>
+        	</div>
+				</div>
+				<br><br>
+			</div>
+		</div>
+			<div class="results" style="display: none;">
+				<div class="container">
+					<div class="row" id="teamCard"></div>
+					<div class="row">
+						<div class="col-6">
+							<h4 class='d-flex justify-content-between align-items-center mb-3' style="padding:40px 0 20px 0;"> <span class='text-muted'>Calls by account type</span> <span class='badge badge-secondary badge-pill'>Entire Team</span> </h4>
+							<canvas id="accountTypeChart" height="300"></canvas>
+						</div>
+						<div class="col-6">
+							<h4 class='d-flex justify-content-between align-items-center mb-3' style="padding:40px 0 20px 0;"> <span class='text-muted'>Usage by org</span> <span class='badge badge-secondary badge-pill'>Entire Team</span> </h4>
+							<canvas id="orgUsageChart" height="300"></canvas>
+						</div>
+						<div class="col-6">
+							<h4 class='d-flex justify-content-between align-items-center mb-3' style="padding:40px 0 20px 0;"> <span class='text-muted'>Calls by opportunity stage</span> <span class='badge badge-secondary badge-pill'>Entire Team</span> </h4>
+							<canvas id="stageUsageChart" height="300"></canvas>
+						</div>
+						<div class="col-6">
+							<h4 class='d-flex justify-content-between align-items-center mb-3' style="padding:40px 0 20px 0;"> <span class='text-muted'>Usage by topic</span> <span class='badge badge-secondary badge-pill'>Entire Team</span> </h4>
+							<canvas id="topicUsageChart" height="300"></canvas>
+						</div>
+						<div class="col-6">
+							<h4 class='d-flex justify-content-between align-items-center mb-3' style="padding:40px 0 20px 0;"> <span class='text-muted'>Usage by unit</span> <span class='badge badge-secondary badge-pill'>Entire Team</span> </h4>
+							<canvas id="unitUsageChart" height="300"></canvas>
+						</div>
+						<div class="col-6">
+							<h4 class='d-flex justify-content-between align-items-center mb-3' style="padding:40px 0 20px 0;"> <span class='text-muted'>Calls by opportunity type</span> <span class='badge badge-secondary badge-pill'>Entire Team</span> </h4>
+							<canvas id="opportunityTypeChart" height="300"></canvas>
+						</div>
+					</div>
+				<br>
+				<hr class="mb-4">
+				<br>
+			</div>
+			<div class="row" id="memberCards" style="margin:0 20px;"></div>
+		</div>
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+		<script src="assets/js/CSVExport.js"></script>
+		<script src="assets/js/script.js"></script>
+	</body>
+</html>

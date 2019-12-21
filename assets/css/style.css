@@ -1,0 +1,41 @@
+.headshots {
+  border-radius: 15px;
+  box-shadow: 0 0 20px #0000004d;
+  margin-bottom: 5px !important;
+}
+
+.animation1 {
+    -webkit-animation: animation1 4s linear infinite; /* Chrome, Safari 5 */
+       -moz-animation: animation1 4s linear infinite; /* Firefox 5-15 */
+         -o-animation: animation1 4s linear infinite; /* Opera 12+ */
+            animation: animation1 4s linear infinite; /* Chrome, Firefox 16+,*/
+}
+.animation2 {
+    -webkit-animation: animation2 4s linear infinite; /* Chrome, Safari 5 */
+       -moz-animation: animation2 4s linear infinite; /* Firefox 5-15 */
+         -o-animation: animation2 4s linear infinite; /* Opera 12+ */
+            animation: animation2 4s linear infinite; /* Chrome, Firefox 16+,*/
+}
+@-webkit-keyframes animation1 {
+  0% { -webkit-transform: rotate(0deg) translateX(25px) rotate(0deg); -webkit-filter: grayscale(0%); filter: grayscale(0%); }
+  50%   { -webkit-filter: grayscale(100%); filter: grayscale(100%);}
+  100%   { -webkit-transform: rotate(360deg) translateX(25px) rotate(-360deg); -webkit-filter: grayscale(0%); filter: grayscale(0%);}
+}
+
+@keyframes animation1 {
+  0% { transform: rotate(0deg) translateX(25px) rotate(0deg); -webkit-filter: grayscale(0%); filter: grayscale(0%);}
+  50%   { -webkit-filter: grayscale(100%); filter: grayscale(100%);}
+  100%   { transform: rotate(360deg) translateX(25px) rotate(-360deg); -webkit-filter: grayscale(0%); filter: grayscale(0%);}
+}
+
+@-webkit-keyframes animation2 {
+  0% { -webkit-transform: rotate(0deg) translateX(25px) rotate(0deg); -webkit-filter: grayscale(100%); filter: grayscale(100%); }
+  50%   { -webkit-filter: grayscale(0%); filter: grayscale(0%);}
+  100%   { -webkit-transform: rotate(360deg) translateX(25px) rotate(-360deg); -webkit-filter: grayscale(100%); filter: grayscale(100%);}
+}
+
+@keyframes animation2 {
+  0% { transform: rotate(0deg) translateX(25px) rotate(0deg); -webkit-filter: grayscale(100%); filter: grayscale(100%);}
+  50%   { -webkit-filter: grayscale(0%); filter: grayscale(0%);}
+  100%   { transform: rotate(360deg) translateX(25px) rotate(-360deg); -webkit-filter: grayscale(100%); filter: grayscale(100%);}
+}
