@@ -1,4 +1,4 @@
-# gong-reporting-dashboard
-Browser-side analysis of Gong data displayed in a UI
+# Gong Reporting Dashboard
+This is a project maintained by the Solutions Engineering team @ Drift.
 
-Please see the Github Wiki for documentation.
+It is a browser-side analysis of Gong data displayed in a UI. Please see the Github Wiki for documentation.
