@@ -80,8 +80,11 @@ $('#generateURL').click(function(){
   if (filterArray.length) {
     filterResult = `"search":{"type":"And","filters":[${filterArray}]}`;
   }
-
-  alert(`https://app.gong.io/calls/ajax/calls?company-id=${companyId}&pageSize=${pageSize}&offset=${pageOffset}&callSearch={${filterResult}}`);
+  $("#gongURL").val(`https://app.gong.io/calls/ajax/calls?company-id=${companyId}&pageSize=${pageSize}&offset=${pageOffset}&callSearch={${filterResult}}`);
+    $("#gongURL").select();
+    document.execCommand("copy");
+    window.open(`https://app.gong.io/calls/ajax/calls?company-id=${companyId}&pageSize=${pageSize}&offset=${pageOffset}&callSearch={${filterResult}}`);
+    $('#inputGongData').focus();
 });
 
 

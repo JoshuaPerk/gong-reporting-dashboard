@@ -16,43 +16,56 @@
 				<img class="headshots animation2 mx-auto mb-4" src="assets/img/4.jpeg" alt="" width="72" height="72">
 				<img class="headshots animation1 mx-auto mb-4" src="assets/img/3.jpeg" alt="" width="72" height="72"><br><br>
 				<h2>Solutions Reporting Dashboard</h2><br>
-				<div class="dataForm">
+				<div class="dataForm" style="text-align:left;">
 					<div class="row">
-						<div class="col-md-3 mb-3">
-							<label for="pageSize">Number of Results</label>
-							<input class="form-control" type="number" name="pageSize" id="pageSize" value="5000" min="10" max="10000" step="1">
+						<div class="col-md-6 mb-6">
+							<div class="row">
+								<div class="col-md-6 mb-6">
+									<label for="pageSize">Number of Results</label>
+									<input class="form-control" type="number" name="pageSize" id="pageSize" value="5000" min="10" max="10000" step="1">
+								</div>
+			          <div class="col-md-6 mb-6">
+			            <label for="timeframe">Timeframe</label>
+									<select id="timeframe" name="timeframe" class="custom-select d-block w-100">
+										<option value="all">All Time</option>
+										<option value="week">This Week</option>
+										<option value="month">This Month</option>
+										<option value="quarter">This Quarter</option>
+										<option value="year">This Year</option>
+										<option value="last7">Last 7 Days</option>
+										<option value="last30">Last 30 Days</option>
+										<option value="last60">Last 60 Days</option>
+										<option value="last90">Last 90 Days</option>
+										<option value="last365">Last 365 Days</option>
+										<option value="custom">Custom range</option>
+									</select>
+			          </div>
+			        </div>
+							<div class="row">
+								<div class="col-md-6 mb-6">
+									<label for="pageSize">Start Date Range</label>
+									<input class="form-control" id="startRange" type="date" name="startRange">
+								</div>
+								<div class="col-md-6 mb-6">
+									<label for="pageSize">End Date Range</label>
+									<input class="form-control" id="endRange" type="date" name="endRange">
+								</div>
+							</div>
 						</div>
-	          <div class="col-md-3 mb-3">
-	            <label for="timeframe">Timeframe</label>
-							<select id="timeframe" name="timeframe" class="custom-select d-block w-100">
-								<option value="all">All Time</option>
-								<option value="week">This Week</option>
-								<option value="month">This Month</option>
-								<option value="quarter">This Quarter</option>
-								<option value="year">This Year</option>
-								<option value="last7">Last 7 Days</option>
-								<option value="last30">Last 30 Days</option>
-								<option value="last60">Last 60 Days</option>
-								<option value="last90">Last 90 Days</option>
-								<option value="last365">Last 365 Days</option>
-								<option value="custom">Custom range</option>
-							</select>
-	          </div>
 						<div class="col-md-3 mb-3">
-							<label for="pageSize">Start Date Range</label>
-							<input class="form-control" id="startRange" type="date" name="startRange">
+							<label for="participant">Participants</label><br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="participant" id="participant1" type="checkbox" name="participant1" value="9088225365379367685" checked>Joshua Perk<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="participant" id="participant2" type="checkbox" name="participant2" value="8948771410146644384" checked>Nate Hoffelmeyer<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="participant" id="participant3" type="checkbox" name="participant3" value="1341274696220001313" checked>David Thompson<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="participant" id="participant4" type="checkbox" name="participant4" value="4618243625088269996" checked>Ashley Basinger<br><br>
 						</div>
 						<div class="col-md-3 mb-3">
-							<label for="pageSize">End Date Range</label>
-							<input class="form-control" id="endRange" type="date" name="endRange">
+							<input id="scope" type="checkbox" name="scope" value="external" checked>External calls only<br><br>
+							<button id='generateURL'class="btn-block btn btn-primary" type="button" name="button">Generate URL + 📋</button><br>
+							<input class="form-control" type="text" name="gongURL" id="gongURL" placeholder="Gong request URL">
 						</div>
 	        </div>
-					<input class="participant" id="participant1" type="checkbox" name="participant1" value="9088225365379367685" checked>Joshua Perk&nbsp;&nbsp;&nbsp;&nbsp;
-					<input class="participant" id="participant2" type="checkbox" name="participant2" value="8948771410146644384" checked>Nate Hoffelmeyer&nbsp;&nbsp;&nbsp;&nbsp;
-					<input class="participant" id="participant3" type="checkbox" name="participant3" value="1341274696220001313" checked>David Thompson&nbsp;&nbsp;&nbsp;&nbsp;
-					<input class="participant" id="participant4" type="checkbox" name="participant4" value="4618243625088269996" checked>Ashley Basinger&nbsp;&nbsp;&nbsp;&nbsp;
-					<input id="scope" type="checkbox" name="scope" value="external" checked>External calls only&nbsp;&nbsp;&nbsp;&nbsp;
-					<button id='generateURL'class="btn btn-primary" type="button" name="button">Generate URL</button><br><br>
+					<hr class="mb-5">
 					<div class="input-group">
 	          <input type="text" class="form-control" placeholder="Gong API data" id="inputGongData">
 	          <div class="input-group-append">
