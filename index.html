@@ -53,14 +53,18 @@
 							</div>
 						</div>
 						<div class="col-md-3 mb-3">
-							<label for="participant">Participants</label><br>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="participant" id="participant1" type="checkbox" name="participant1" value="9088225365379367685" checked>Joshua Perk<br>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="participant" id="participant2" type="checkbox" name="participant2" value="8948771410146644384" checked>Nate Hoffelmeyer<br>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="participant" id="participant3" type="checkbox" name="participant3" value="1341274696220001313" checked>David Thompson<br>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="participant" id="participant4" type="checkbox" name="participant4" value="4618243625088269996" checked>Ashley Basinger<br><br>
+							<div class="button-group">
+								<input id="scope" type="checkbox" name="scope" value="external" checked>&nbsp;&nbsp;&nbsp;External calls only<br>
+				        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><label for="participant">Participants<span class="caret"></span></label></button>
+								<ul class="dropdown-menu">
+								  <li><input class="participant" id="participant1" type="checkbox" value="9088225365379367685" checked>Joshua Perk</li>
+								  <li><input class="participant" id="participant2" type="checkbox" value="8948771410146644384" checked>Nate Hoffelmeyer</li>
+								  <li><input class="participant" id="participant3" type="checkbox" value="1341274696220001313" checked>David Thompson</li>
+								  <li><input class="participant" id="participant4" type="checkbox" value="4618243625088269996" checked>Ashley Basinger</li>
+								</ul>
+						  </div>
 						</div>
 						<div class="col-md-3 mb-3">
-							<input id="scope" type="checkbox" name="scope" value="external" checked>External calls only<br><br>
 							<button id='generateURL'class="btn-block btn btn-primary" type="button" name="button">Generate URL + 📋</button><br>
 							<input class="form-control" type="text" name="gongURL" id="gongURL" placeholder="Gong request URL">
 						</div>
@@ -78,7 +82,101 @@
 		</div>
 			<div class="results" style="display: none;">
 				<div class="container">
-					<div class="row" id="teamCard"></div>
+					<div class="row">
+						<div class="col-2">
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><label for="participant">Filter by Unit<span class="caret"></span></label></button>
+							<ul class="dropdown-menu">
+								<li><input class="unitFilter" id="unitFilter1" type="checkbox" value="SMB" checked>SMB</li>
+								<li><input class="unitFilter" id="unitFilter2" type="checkbox" value="SME" checked>SME</li>
+								<li><input class="unitFilter" id="unitFilter3" type="checkbox" value="INT" checked>INT</li>
+								<li><input class="unitFilter" id="unitFilter4" type="checkbox" value="ENT" checked>ENT</li>
+								<li><input class="unitFilter" id="unitFilter5" type="checkbox" value="Siftrock" checked>Siftrock</li>
+								<li><input class="unitFilter" id="unitFilter6" type="checkbox" value="Undefined" checked>Undefined</li>
+							</ul>
+						</div>
+						<div class="col-2">
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><label for="participant">Filter by Org<span class="caret"></span></label></button>
+							<ul class="dropdown-menu">
+								<li><input class="orgFilter" id="orgFilter1" type="checkbox" value="Sales" checked>Sales</li>
+								<li><input class="orgFilter" id="orgFilter2" type="checkbox" value="CSM" checked>CSM</li>
+								<li><input class="orgFilter" id="orgFilter3" type="checkbox" value="Partner" checked>Partner</li>
+								<li><input class="orgFilter" id="orgFilter4" type="checkbox" value="AM" checked>AM</li>
+								<li><input class="orgFilter" id="orgFilter5" type="checkbox" value="Undefined" checked>Undefined</li>
+							</ul>
+						</div>
+						<div class="col-2">
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><label for="participant">Filter by Topics<span class="caret"></span></label></button>
+							<ul class="dropdown-menu">
+								<li><input class="topicFilter" id="topicFilter0" type="checkbox" value="Any Topic" checked>Any Topic</li>
+								<li><input class="topicFilter" id="topicFilter1" type="checkbox" value="About the Prospect">About the Prospect</li>
+								<li><input class="topicFilter" id="topicFilter2" type="checkbox" value="Account Lists">Account Lists</li>
+								<li><input class="topicFilter" id="topicFilter3" type="checkbox" value="Buying Experience Strategy">Buying Experience Strategy</li>
+								<li><input class="topicFilter" id="topicFilter4" type="checkbox" value="CRM Integration">CRM Integration</li>
+								<li><input class="topicFilter" id="topicFilter5" type="checkbox" value="Call Setup">Call Setup</li>
+								<li><input class="topicFilter" id="topicFilter6" type="checkbox" value="Capturing Emails">Capturing Emails</li>
+								<li><input class="topicFilter" id="topicFilter7" type="checkbox" value="Clearbit">Clearbit</li>
+								<li><input class="topicFilter" id="topicFilter8" type="checkbox" value="Decision Timeline">Decision Timeline</li>
+								<li><input class="topicFilter" id="topicFilter9" type="checkbox" value="Discovery">Discovery</li>
+								<li><input class="topicFilter" id="topicFilter10" type="checkbox" value="Legal & Privacy">Legal & Privacy</li>
+								<li><input class="topicFilter" id="topicFilter11" type="checkbox" value="Meetings">Meetings</li>
+								<li><input class="topicFilter" id="topicFilter12" type="checkbox" value="Metrics">Metrics</li>
+								<li><input class="topicFilter" id="topicFilter13" type="checkbox" value="Next Steps">Next Steps</li>
+								<li><input class="topicFilter" id="topicFilter14" type="checkbox" value="Notifications">Notifications</li>
+								<li><input class="topicFilter" id="topicFilter15" type="checkbox" value="Onboarding & CS">Onboarding & CS</li>
+								<li><input class="topicFilter" id="topicFilter16" type="checkbox" value="Page Intent Tracking">Page Intent Tracking</li>
+								<li><input class="topicFilter" id="topicFilter17" type="checkbox" value="Pricing">Pricing</li>
+								<li><input class="topicFilter" id="topicFilter18" type="checkbox" value="Reports">Reports</li>
+								<li><input class="topicFilter" id="topicFilter19" type="checkbox" value="Routing">Routing</li>
+								<li><input class="topicFilter" id="topicFilter20" type="checkbox" value="Second Net">Second Net</li>
+								<li><input class="topicFilter" id="topicFilter21" type="checkbox" value="Small Talk">Small Talk</li>
+								<li><input class="topicFilter" id="topicFilter22" type="checkbox" value="Support">Support</li>
+							</ul>
+						</div>
+						<div class="col-2">
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><label for="participant">Filter by Stage<span class="caret"></span></label></button>
+							<ul class="dropdown-menu">
+								<li><input class="stageFilter" id="stageFilter1" type="checkbox" value="At Risk" checked>At Risk</li>
+								<li><input class="stageFilter" id="stageFilter2" type="checkbox" value="Best Case" checked>Best Case</li>
+								<li><input class="stageFilter" id="stageFilter3" type="checkbox" value="Business Case Identified" checked>Business Case Identified</li>
+								<li><input class="stageFilter" id="stageFilter4" type="checkbox" value="Closed Lost" checked>Closed Lost</li>
+								<li><input class="stageFilter" id="stageFilter5" type="checkbox" value="Closed Won" checked>Closed Won</li>
+								<li><input class="stageFilter" id="stageFilter6" type="checkbox" value="Contracting/Verbal" checked>Contracting/Verbal</li>
+								<li><input class="stageFilter" id="stageFilter7" type="checkbox" value="Discovery" checked>Discovery</li>
+								<li><input class="stageFilter" id="stageFilter8" type="checkbox" value="Executing Shared Plan" checked>Executing Shared Plan</li>
+								<li><input class="stageFilter" id="stageFilter9" type="checkbox" value="Negotiation" checked>Negotiation</li>
+								<li><input class="stageFilter" id="stageFilter10" type="checkbox" value="Pipeline" checked>Pipeline</li>
+								<li><input class="stageFilter" id="stageFilter11" type="checkbox" value="Presentation Schedule" checked>Presentation Schedule</li>
+								<li><input class="stageFilter" id="stageFilter12" type="checkbox" value="Save" checked>Save</li>
+								<li><input class="stageFilter" id="stageFilter13" type="checkbox" value="Shared Plan Defined" checked>Shared Plan Defined</li>
+								<li><input class="stageFilter" id="stageFilter14" type="checkbox" value="Solution Review" checked>Solution Review</li>
+								<li><input class="stageFilter" id="stageFilter15" type="checkbox" value="Solution Validation" checked>Solution Validation</li>
+								<li><input class="stageFilter" id="stageFilter16" type="checkbox" value="Use Case Identified" checked>Use Case Identified</li>
+								<li><input class="stageFilter" id="stageFilter17" type="checkbox" value="null" checked>null</li>
+							</ul>
+						</div>
+						<div class="col-2">
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><label for="participant">Filter by Type<span class="caret"></span></label></button>
+							<ul class="dropdown-menu">
+								<li><input class="typeFilter" id="typeFilter1" type="checkbox" value="At Risk" checked>At Risk</li>
+								<li><input class="typeFilter" id="typeFilter2" type="checkbox" value="Churn" checked>Churn</li>
+								<li><input class="typeFilter" id="typeFilter3" type="checkbox" value="Contraction" checked>Contraction</li>
+								<li><input class="typeFilter" id="typeFilter4" type="checkbox" value="Cross-Sell" checked>Cross-Sell</li>
+								<li><input class="typeFilter" id="typeFilter5" type="checkbox" value="Expansion" checked>Expansion</li>
+								<li><input class="typeFilter" id="typeFilter6" type="checkbox" value="New Business" checked>New Business</li>
+								<li><input class="typeFilter" id="typeFilter7" type="checkbox" value="No Change" checked>No Change</li>
+								<li><input class="typeFilter" id="typeFilter8" type="checkbox" value="Reactivation" checked>Reactivation</li>
+								<li><input class="typeFilter" id="typeFilter9" type="checkbox" value="Renewal" checked>Renewal</li>
+								<li><input class="typeFilter" id="typeFilter10" type="checkbox" value="Services" checked>Services</li>
+								<li><input class="typeFilter" id="typeFilter11" type="checkbox" value="Term Change" checked>Term Change</li>
+								<li><input class="typeFilter" id="typeFilter12" type="checkbox" value="Upgrade" checked>Upgrade</li>
+								<li><input class="typeFilter" id="typeFilter13" type="checkbox" value="null" checked>null</li>
+							</ul>
+						</div>
+						<div class="col-2">
+							<button type="button" class="btn btn-primary btn-block" id="applyFilter">Apply filter</button>
+						</div>
+					</div>
+					<div class="row" id="teamCard" style="padding-top:10px;"></div>
 					<div class="row">
 						<div class="col-6">
 							<h4 class='d-flex justify-content-between align-items-center mb-3' style="padding:40px 0 20px 0;"> <span class='text-muted'>Calls by account type</span> <span class='badge badge-secondary badge-pill'>Entire Team</span> </h4>
@@ -111,7 +209,7 @@
 			</div>
 			<div class="row" id="memberCards" style="margin:0 20px;"></div>
 		</div>
-		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 		<script src="assets/js/CSVExport.js"></script>

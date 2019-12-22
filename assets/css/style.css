@@ -39,3 +39,11 @@
   50%   { -webkit-filter: grayscale(0%); filter: grayscale(0%);}
   100%   { transform: rotate(360deg) translateX(25px) rotate(-360deg); -webkit-filter: grayscale(100%); filter: grayscale(100%);}
 }
+
+.dropdown-menu {
+  padding: 10px 20px;
+}
+
+.dropdown-menu input {
+  margin-right: 5px;
+}
