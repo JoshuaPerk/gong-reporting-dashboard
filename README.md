@@ -6,6 +6,7 @@ This is a project maintained by the Solutions Engineering team @ Drift. It is a 
 2. Navigate to https://joshuaperk.github.io/gong-reporting-dashboard/
 3. Set your filters (start and end dates are only needed when the `timeframe` filter is set to `Custom`)
 4. Click `Generate URL + 📋` and wait for the new browser page to completely load (no spinning process bar - this may take up to 30 seconds for large results)
+   **Warning:** If you're not already logged into Gong, a window will appear to authenticate and the redirect after logging in will fail. You'll need to click the button again.
 5. Copy the body of the new window and return to the previous tab. Paste it into the `Gong API data` input. Click `Process data`.
 
 ## Gong API Query Structure
