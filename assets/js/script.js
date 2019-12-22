@@ -16,6 +16,75 @@ var jsonGongData;
 let labels = [];
 let data = [];
 
+let baseURL = "https://app.gong.io/calls/ajax/calls?";
+let pageOffset = 0;
+let pageSize = 5000;
+let companyId = "3568831574419877865";
+let filterArray = [];
+let filterResult;
+
+$('#generateURL').click(function(){
+  pageSize = $('#pageSize').val();
+  filterResult = '';
+  filterArray = [];
+  switch($('#timeframe').val()) {
+    case 'week':
+      filterArray.push(`{"type":"PredefinedCallTime","period":"THIS_WEEK"}`);
+      break;
+    case 'month':
+      filterArray.push(`{"type":"PredefinedCallTime","period":"THIS_MONTH"}`);
+      break;
+    case 'quarter':
+      filterArray.push(`{"type":"PredefinedCallTime","period":"THIS_QUARTER"}`);
+      break;
+    case 'year':
+      filterArray.push(`{"type":"PredefinedCallTime","period":"THIS_YEAR}`);
+      break;
+    case 'last7':
+      filterArray.push(`{"type":"RelativeCallTime","last":7,"unit":"DAYS"}`);
+      break;
+    case 'last30':
+      filterArray.push(`{"type":"RelativeCallTime","last":30,"unit":"DAYS"}`);
+      break;
+    case 'last60':
+      filterArray.push(`{"type":"RelativeCallTime","last":60,"unit":"DAYS"}`);
+      break;
+    case 'last90':
+      filterArray.push(`{"type":"RelativeCallTime","last":90,"unit":"DAYS"}`);
+      break;
+    case 'last365':
+      filterArray.push(`{"type":"RelativeCallTime","last":365,"unit":"DAYS"}`);
+      break;
+    case 'custom':
+      filterArray.push(`{"type":"AbsoluteCallDateRange","from":"${$('#startRange').val()}","to":"${$('#endRange').val()}"}`);
+      break;
+    default:
+      // Nothing to push
+  }
+
+  if (document.getElementById('scope').checked) {
+    filterArray.push(`{"type":"InternalMeeting","internal":false,"external":true,"missing":true}`);
+  }
+
+  var participantsArray = [];
+  $(".participant").each(function() {
+    if (document.getElementById(this.id).checked) {
+      participantsArray.push(this.value)
+    }
+  });
+
+  if (participantsArray.length) {
+    filterArray.push(`{"type":"Participant","userIds":${JSON.stringify(participantsArray)}}`);
+  }
+
+  if (filterArray.length) {
+    filterResult = `"search":{"type":"And","filters":[${filterArray}]}`;
+  }
+
+  alert(`https://app.gong.io/calls/ajax/calls?company-id=${companyId}&pageSize=${pageSize}&offset=${pageOffset}&callSearch={${filterResult}}`);
+});
+
+
 let team = {
   "numberOfCalls": 0,
   "duration": 0,
