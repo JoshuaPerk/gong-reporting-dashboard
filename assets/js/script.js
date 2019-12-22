@@ -821,7 +821,7 @@ function processData(){
     });
   });
   $([document.documentElement, document.body]).animate({
-    scrollTop: $("#teamCard").offset().top
+    scrollTop: $("#results").offset().top
   }, 2000);
 };
 function addCommas(nStr){
