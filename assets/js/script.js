@@ -290,6 +290,11 @@ function processData(){
       }
     });
 
+    var questionOrgUsageString == '';
+    $.each(team.questionOrgUsage, function( index, value ) {
+      questionOrgUsageString += `${index}: ${value}. `;
+    });
+
   // Then work on the Gong call data
 
   var unitFilter = [];
@@ -506,18 +511,18 @@ function processData(){
           <span class='text-muted'>${team.avgInteractivity.toFixed(2)}</span>
         </li>
       </ul>
-      <div><a class='text-muted' style='cursor:pointer;' onclick='new CSVExport(jsonGongData.allCallsResponse);'>🗂 Download call history &#187;</a></div>
+      <div><a class='text-muted' style='cursor:pointer;' onclick='new CSVExport(jsonGongData.allCallsResponse);'>🗂 Download call history &#187;</a></div><br>
       <ul class='list-group mb-3'>
         <li class='list-group-item d-flex justify-content-between lh-condensed'>
           <div>
             <h6 class='my-0'>Number of question requests</h6>
-            <small class='text-muted'>Total opportunity dollars touched</small>
+            <small class='text-muted'>${questionOrgUsageString}</small>
           </div>
           <span class='text-muted'>${addCommas(team.numberOfQuestionRequests)}</span>
         </li>
         <li class='list-group-item d-flex justify-content-between lh-condensed'>
           <div>
-            <h6 class='my-0'>MRR influenced</h6>
+            <h6 class='my-0'>MRR influenced via question requests</h6>
           </div>
           <span class='text-muted'>$${addCommas(team.questionValue.toFixed(2))}</span>
         </li>
