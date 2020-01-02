@@ -201,8 +201,8 @@
           response.result.values.forEach(function(question){
             console.log(question[6]);
             team.questionOwners[question[1]] = (team.questionOwners[question[1]] || 1) + 1;
-            if (isNumber(parseFloat(question[6]))) {
-              team.questionsValue += Math.abs(parseFloat(question[6]));
+            if (isNumber(parseFloat(Number(question[6].replace(/[^0-9.-]+/g,""))))) {
+              team.questionsValue += Math.abs(parseFloat(Number(question[6].replace(/[^0-9.-]+/g,""))));
             }
           });
         }, function(response) {
