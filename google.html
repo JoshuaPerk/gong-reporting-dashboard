@@ -12,6 +12,8 @@
     <button id="signout_button" style="display: none;">Sign Out</button>
 
     <pre id="content" style="white-space: pre-wrap;"></pre>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
 
     <script type="text/javascript">
       var CLIENT_ID = '393986627865-du66b48n8dtc1iscfnqh4olp1qp47otk.apps.googleusercontent.com';
@@ -21,17 +23,10 @@
       var authorizeButton = document.getElementById('authorize_button');
       var signoutButton = document.getElementById('signout_button');
 
-      /**
-       *  On load, called to load the auth2 library and API client library.
-       */
       function handleClientLoad() {
         gapi.load('client:auth2', initClient);
       }
 
-      /**
-       *  Initializes the API client library and sets up sign-in state
-       *  listeners.
-       */
       function initClient() {
         gapi.client.init({
           apiKey: API_KEY,
@@ -39,10 +34,7 @@
           discoveryDocs: DISCOVERY_DOCS,
           scope: SCOPES
         }).then(function () {
-          // Listen for sign-in state changes.
           gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
-
-          // Handle the initial sign-in state.
           updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
           authorizeButton.onclick = handleAuthClick;
           signoutButton.onclick = handleSignoutClick;
@@ -51,66 +43,42 @@
         });
       }
 
-      /**
-       *  Called when the signed in status changes, to update the UI
-       *  appropriately. After a sign-in, the API is called.
-       */
       function updateSigninStatus(isSignedIn) {
         if (isSignedIn) {
           authorizeButton.style.display = 'none';
           signoutButton.style.display = 'block';
-          listMajors();
+          getQuestionRequests();
         } else {
           authorizeButton.style.display = 'block';
           signoutButton.style.display = 'none';
         }
       }
 
-      /**
-       *  Sign in the user upon button click.
-       */
       function handleAuthClick(event) {
         gapi.auth2.getAuthInstance().signIn();
       }
 
-      /**
-       *  Sign out the user upon button click.
-       */
       function handleSignoutClick(event) {
         gapi.auth2.getAuthInstance().signOut();
       }
 
-      /**
-       * Append a pre element to the body containing the given message
-       * as its text node. Used to display the results of the API call.
-       *
-       * @param {string} message Text to be placed in pre element.
-       */
       function appendPre(message) {
         var pre = document.getElementById('content');
         var textContent = document.createTextNode(message + '\n');
         pre.appendChild(textContent);
       }
 
-      /**
-       * Print the names and majors of students in a sample spreadsheet:
-       * https://docs.google.com/spreadsheets/d/13q20Tw_8yrH0fDMnFZU-_5OoiJgIT8zW1-_IOA1IZxk/edit
-       */
-
-
-      function listMajors() {
+      function getQuestionRequests() {
+        resetDataLayer();
         gapi.client.sheets.spreadsheets.values.get({
           spreadsheetId: '13q20Tw_8yrH0fDMnFZU-_5OoiJgIT8zW1-_IOA1IZxk',
           range: 'Questions!A2:I',
         }).then(function(response) {
           var range = response.result;
           if (range.values.length > 0) {
-            appendPre('Request date,	Request by,	User ID,	Business unit,	Account name,	Org ID,	Forecasted MRR,	Question,	Answered by:');
-            for (i = 0; i < range.values.length; i++) {
-              var row = range.values[i];
-              // Print columns A and E, which correspond to indices 0 and 4.
-              appendPre(row[0] + ', ' + row[1] + ', ' + row[2] + ', ' + row[3] + ', ' + row[4] + ', ' + row[5] + ', ' + row[6] + ', ' + row[7]);
-            }
+            range.values.forEach(function(question){
+              console.log(question[[0]);
+            });
           } else {
             appendPre('No data found.');
           }
@@ -124,6 +92,119 @@
     <script async defer src="https://apis.google.com/js/api.js"
       onload="this.onload=function(){};handleClientLoad()"
       onreadystatechange="if (this.readyState === 'complete') this.onload()">
+
+
+
+      function resetDataLayer(){
+        team = {
+          "numberOfQuestionRequests": 0,
+          "questionsWithOrgID": 0,
+          "questionsValue": 0,
+          "questionOwners": {},
+          "users": [
+            {"name":"William Kiley","unit":"SMB","org":"Sales"},
+            {"name":"Michael Rogewitz","unit":"SMB","org":"Sales"},
+            {"name":"Maddie Gauthier","unit":"SMB","org":"Sales"},
+            {"name":"Jeff Sullivan","unit":"INT","org":"Sales"},
+            {"name":"Mari O'Leary","unit":"SME","org":"Sales"},
+            {"name":"Max Sandoval","unit":"SME","org":"AM"},
+            {"name":"Collin O'Brien","unit":"SMB","org":"AM"},
+            {"name":"Madelyn Ligtenberg","unit":"SMB","org":"Sales"},
+            {"name":"Nick Brown","unit":"SME","org":"AM"},
+            {"name":"Jeff Andrew Mabute-Louie","unit":"SME","org":"Sales"},
+            {"name":"Stephanie Durocher","unit":"SMB","org":"Sales"},
+            {"name":"Ciaran Nugent","unit":"SMB","org":"Sales"},
+            {"name":"Michael Pantano","unit":"SMB","org":"Sales"},
+            {"name":"Courtney Thompson","unit":"SMB","org":"Sales"},
+            {"name":"Steve Palombo","unit":"SME","org":"Sales"},
+            {"name":"Hambisa Goso","unit":"SME","org":"Sales"},
+            {"name":"Ryan Heavey","unit":"SME","org":"Sales"},
+            {"name":"Michael Grundig","unit":"SMB","org":"Sales"},
+            {"name":"Dan Salvetti","unit":"SME","org":"Sales"},
+            {"name":"Nick Christolos","unit":"SME","org":"Sales"},
+            {"name":"Kerry Harris","unit":"SME","org":"Sales"},
+            {"name":"Bryan Blaha","unit":"SME","org":"Sales"},
+            {"name":"Sean Kenny","unit":"SME","org":"AM"},
+            {"name":"Aaron Roberts","unit":"INT","org":"Sales"},
+            {"name":"Ally Bresnahan","unit":"SME","org":"Sales"},
+            {"name":"Jason Mercer","unit":"SMB","org":"Sales"},
+            {"name":"Lindsey Riordan","unit":"SMB","org":"Sales"},
+            {"name":"Sawyer Dew","unit":"SMB","org":"Sales"},
+            {"name":"Tucker Cohen","unit":"SME","org":"Partner"},
+            {"name":"Claire Kennedy","unit":"SMB","org":"Sales"},
+            {"name":"John Murphy","unit":"SMB","org":"Sales"},
+            {"name":"David Johnson","unit":"SMB","org":"Sales"},
+            {"name":"Erin Silva","unit":"INT","org":"CSM"},
+            {"name":"Christina Nalband","unit":"SME","org":"Sales"},
+            {"name":"Katie Ferris","unit":"Siftrock","org":"Sales"},
+            {"name":"Alex Hanbury","unit":"ENT","org":"Sales"},
+            {"name":"Ryan Topal","unit":"SMB","org":"Sales"},
+            {"name":"Derek Kelliher","unit":"ENT","org":"Sales"},
+            {"name":"Robert Boerrigter","unit":"SMB","org":"Sales"},
+            {"name":"Eve Pham","unit":"SMB","org":"Sales"},
+            {"name":"Tyler Guzzi","unit":"SMB","org":"Sales"},
+            {"name":"Reed Wazorko","unit":"SME","org":"AM"},
+            {"name":"Kelvin Sims","unit":"SMB","org":"Sales"},
+            {"name":"James Pidgeon","unit":"SMB","org":"Sales"},
+            {"name":"Joe Dell'Erario","unit":"SMB","org":"Sales"},
+            {"name":"Evan Cassidy","unit":"ENT","org":"Sales"},
+            {"name":"Vittorio Monteverdi","unit":"SMB","org":"Sales"},
+            {"name":"Tanner Fogarty","unit":"ENT","org":"Sales"},
+            {"name":"Brendan Collins","unit":"SME","org":"AM"},
+            {"name":"Katy Zingale","unit":"SME","org":"AM"},
+            {"name":"Molly Dexter","unit":"SME","org":"Sales"},
+            {"name":"Jordan Pal","unit":"SMB","org":"Sales"},
+            {"name":"Brad Forgetta","unit":"ENT","org":"Sales"},
+            {"name":"Bennett Boucher","unit":"SME","org":"Sales"},
+            {"name":"Trent Mosley","unit":"SME","org":"Partner"},
+            {"name":"Miles Kane","unit":"SMB","org":"Sales"},
+            {"name":"Allen Knox","unit":"ENT","org":"Sales"},
+            {"name":"Kelly Barnett","unit":"SME","org":"Sales"},
+            {"name":"Adam Cox","unit":"SME","org":"Sales"},
+            {"name":"Lincoln Brown","unit":"SME","org":"Sales"},
+            {"name":"Adrian Nardella","unit":"SMB","org":"CSM"},
+            {"name":"Lilly Steeves","unit":"SME","org":"Sales"},
+            {"name":"Paul Axelrod","unit":"SMB","org":"Sales"},
+            {"name":"Amanda Chiang","unit":"ENT","org":"Sales"},
+            {"name":"Sara Miller","unit":"SME","org":"Sales"},
+            {"name":"Shannon Donovan","unit":"SME","org":"Sales"},
+            {"name":"Elliott Thomas","unit":"SMB","org":"CSM"},
+            {"name":"Blake Kelly","unit":"SME","org":"Sales"},
+            {"name":"Jason Phillips","unit":"SME","org":"AM"},
+            {"name":"Michele Albanese","unit":"Siftrock","org":"CSM"},
+            {"name":"Adrianne Ober","unit":"SME","org":"CSM"},
+            {"name":"Alex Lemieux","unit":"ENT","org":"CSM"},
+            {"name":"Amanda Arthur","unit":"ENT","org":"AM"},
+            {"name":"Bailey Best","unit":"SME","org":"CSM"},
+            {"name":"Caitlin Sullivan","unit":"ENT","org":"CSM"},
+            {"name":"Christine Hayden","unit":"ENT","org":"CSM"},
+            {"name":"Daniel Salvetti","unit":"SME","org":"Sales"},
+            {"name":"Elizabeth Glavan","unit":"SME","org":"CSM"},
+            {"name":"Erin Washburn","unit":"ENT","org":"CSM"},
+            {"name":"Jaclyn Van","unit":"SMB","org":"CSM"},
+            {"name":"Jacqueline McLaughlin","unit":"SMB","org":"Sales"},
+            {"name":"Jason Richman","unit":"SME","org":"Sales"},
+            {"name":"Jon Ravesi","unit":"SME","org":"Partner"},
+            {"name":"Joshua Perk","unit":"ENT","org":"Sales"},
+            {"name":"Ken Shin","unit":"ENT","org":"AM"},
+            {"name":"Kristine O'Brien","unit":"SME","org":"CSM"},
+            {"name":"Lottie Hedden","unit":"ENT","org":"CSM"},
+            {"name":"Mary Mitchell","unit":"ENT","org":"Sales"},
+            {"name":"Mike Gotera","unit":"ENT","org":"CSM"},
+            {"name":"Molly Head","unit":"ENT","org":"CSM"},
+            {"name":"Nate Hoffelmeyer","unit":"ENT","org":"CSM"},
+            {"name":"Nathan Chein","unit":"ENT","org":"CSM"},
+            {"name":"Neil Fiedler","unit":"SME","org":"AM"},
+            {"name":"Robert Perez","unit":"SME","org":"Sales"},
+            {"name":"Sam Gifford","unit":"Siftrock","org":"Sales"},
+            {"name":"Seamus McGrath","unit":"SME","org":"Partner"},
+            {"name":"Sebastean Gonzalez-Johnson","unit":"SMB","org":"Sales"},
+            {"name":"Sophie Teraoka","unit":"ENT","org":"CSM"},
+            {"name":"Taylor Miller","unit":"ENT","org":"CSM"},
+          ]
+        };
+      };
+
     </script>
   </body>
 </html>
