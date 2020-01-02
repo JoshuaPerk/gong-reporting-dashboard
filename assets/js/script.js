@@ -525,6 +525,7 @@ function processData(){
       </ul>
     </div>
   `);
+  console.log("WE ARE HERE:", addCommas(team.numberOfQuestionRequests));
 
   labels = [];
   data = [];
