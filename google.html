@@ -198,11 +198,15 @@
           spreadsheetId: '13q20Tw_8yrH0fDMnFZU-_5OoiJgIT8zW1-_IOA1IZxk',
           range: 'Questions!A2:I',
         }).then(function(response) {
+          team.numberOfQuestionRequests = response.result.length;
           response.result.values.forEach(function(question){
             console.log(question[6]);
             team.questionOwners[question[1]] = (team.questionOwners[question[1]] || 1) + 1;
             if (isNumber(parseFloat(Number(question[6].replace(/[^0-9.-]+/g,""))))) {
               team.questionsValue += Math.abs(parseFloat(Number(question[6].replace(/[^0-9.-]+/g,""))));
+            }
+            if (!question[6] == null && !question[6] == "" && !question[6] == "_left blank_ ") {
+              team.questionsWithOrgID++;
             }
           });
         }, function(response) {
