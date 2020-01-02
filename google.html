@@ -185,16 +185,10 @@
           spreadsheetId: '13q20Tw_8yrH0fDMnFZU-_5OoiJgIT8zW1-_IOA1IZxk',
           range: 'Questions!A2:I',
         }).then(function(response) {
-          var range = response.result;
-          if (range.values.length > 0) {
-            console.log('Made it here.');
-            range.values.forEach(function(question){
-              console.log(question[0]);
-              console.log('And here');
-            });
-          } else {
-            appendPre('No data found.');
-          }
+          response.result.values.forEach(function(question){
+            console.log(question[0]);
+            team.questionOwners[question[1]] = (team.questionOwners[question[1]] || 1) + 1;
+          });
         }, function(response) {
           appendPre('Error: ' + response.result.error.message);
         });
