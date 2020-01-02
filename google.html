@@ -204,9 +204,9 @@
             if (isNumber(parseFloat(Number(question[6].replace(/[^0-9.-]+/g,""))))) {
               team.questionsValue += Math.abs(parseFloat(Number(question[6].replace(/[^0-9.-]+/g,""))));
             }
-            if (question[5] != null && question[5] != "" && question[5] != " " && question[5] != "_left blank_" && question[5] != "_left blank_ " && question[5] != "0" && question[5] != "NA" && question[5] != "na" && question[5] != "N/A" && question[5] != "n/a") {
+            if (question[5] != null && question[5] != "" && question[5] != " " && question[5] != "_left blank_" && question[5] != "_left blank_ " && question[5] != "_left blank_  "&& question[5] != " _left blank_ " && question[5] != "  _left blank_  " && question[5] != "0" && question[5] != "NA" && question[5] != "na" && question[5] != "N/A" && question[5] != "n/a") {
               team.questionsWithOrgID++;
-              console.log("Success: ", question[5]);
+              console.log(question[5]);
             } else {
               console.log("Fail: ", question[5]);
             }
