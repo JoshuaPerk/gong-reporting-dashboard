@@ -317,7 +317,7 @@ function processData(){
         } else {
           console.log('Could not map user: ', security[1]);
         }
-        team.securityOwners[security[1]] = (team.securityOwners[question[1]] || 1) + 1;
+        team.securityOwners[security[1]] = (team.securityOwners[security[1]] || 1) + 1;
         if (isNumber(parseFloat(Number(security[7].replace(/[^0-9.-]+/g,""))))) {
           team.questionValue += Math.abs(parseFloat(Number(security[7].replace(/[^0-9.-]+/g,""))));
         }
