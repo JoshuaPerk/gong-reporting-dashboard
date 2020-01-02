@@ -904,6 +904,7 @@ function updateSigninStatus(isSignedIn) {
     authorizeButton.style.display = 'block';
     dataForm.style.display = 'none';
   }
+  $('#googlePreLoader').hide();
 }
 function handleAuthClick(event) {
   gapi.auth2.getAuthInstance().signIn();
