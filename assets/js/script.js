@@ -291,7 +291,7 @@ function processData(){
       }
     });
   });
-  
+
   var unitFilter = [];
   $(".unitFilter").each(function() {
     if (!document.getElementById(this.id).checked) {
@@ -870,7 +870,6 @@ function addCommas(nStr){
   }
   return x1 + x2;
 }
-
 function isNumber (value) {
   if (typeof value !== 'number') {
     return false
@@ -883,11 +882,6 @@ function isNumber (value) {
   }
   return true
 }
-
-function handleClientLoad() {
-  gapi.load('client:auth2', initClient);
-}
-
 function initClient() {
   gapi.client.init({
     apiKey: API_KEY,
@@ -902,7 +896,6 @@ function initClient() {
     // Error goes here
   });
 }
-
 function updateSigninStatus(isSignedIn) {
   if (isSignedIn) {
     authorizeButton.style.display = 'none';
@@ -912,7 +905,7 @@ function updateSigninStatus(isSignedIn) {
     dataForm.style.display = 'none';
   }
 }
-
 function handleAuthClick(event) {
   gapi.auth2.getAuthInstance().signIn();
 }
+gapi.load('client:auth2', initClient);
