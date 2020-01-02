@@ -22,6 +22,7 @@
       var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
       var authorizeButton = document.getElementById('authorize_button');
       var signoutButton = document.getElementById('signout_button');
+      let team;
 
       function handleClientLoad() {
         gapi.load('client:auth2', initClient);
@@ -76,8 +77,10 @@
         }).then(function(response) {
           var range = response.result;
           if (range.values.length > 0) {
+            console.log('Made it here.');
             range.values.forEach(function(question){
               console.log(question[0]);
+              console.log('And here');
             });
           } else {
             appendPre('No data found.');
