@@ -120,6 +120,11 @@ function resetDataLayer(){
     "questionOwners": {},
     "questionOrgUsage": {},
     "questionUnitUsage": {},
+    "numberOfSecurityRequests": 0,
+    "securityValue": 0,
+    "securityOwners": {},
+    "securityOrgUsage": {},
+    "securityUnitUsage": {},
     "members": [
       {
         "name": "Joshua Perk",
@@ -294,6 +299,35 @@ function processData(){
     $.each(team.questionOrgUsage, function( index, value ) {
       questionOrgUsageString += `${index}: ${value}. `;
     });
+
+    // THEN GET SECURITY REQUESTS
+
+    gapi.client.sheets.spreadsheets.values.get({
+      spreadsheetId: '1J5kT-0eRYtHPCakPzVKwqLrLProp6LnB9zNaL-7K2Bo',
+      range: 'Requests!A2:H',
+    }).then(function(response) {
+      team.numberOfSecurityRequests = response.result.values.length;
+      response.result.values.forEach(function(security){
+        var userLookup = team.users.find(obj => {
+          return obj.slackID == security[1]
+        });
+        if (userLookup) {
+          team.securityOrgUsage[userLookup.org] = (team.securityOrgUsage[userLookup.org] || 1) + 1;
+          team.securityUnitUsage[userLookup.unit] = (team.securityUnitUsage[userLookup.unit] || 1) + 1;
+        } else {
+          console.log('Could not map user: ', security[1]);
+        }
+        team.securityOwners[security[1]] = (team.securityOwners[question[1]] || 1) + 1;
+        if (isNumber(parseFloat(Number(security[7].replace(/[^0-9.-]+/g,""))))) {
+          team.questionValue += Math.abs(parseFloat(Number(security[7].replace(/[^0-9.-]+/g,""))));
+        }
+      });
+
+      var securityOrgUsageString = '';
+      $.each(team.securityOrgUsage, function( index, value ) {
+        securityOrgUsageString += `${index}: ${value}. `;
+      });
+
 
   // Then work on the Gong call data
 
@@ -879,6 +913,7 @@ function processData(){
   $([document.documentElement, document.body]).animate({
     scrollTop: $("#results").offset().top
   }, 2000);
+  });
   });
 };
 function addCommas(nStr){
