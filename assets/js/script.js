@@ -10,7 +10,6 @@ var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"
 var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
 var authorizeButton = document.getElementById('authorize_button');
 var dataForm = document.getElementById('dataForm');
-
 $('#inputGongData').focus();
 $('#generateURL').click(function(){
   pageSize = $('#pageSize').val();
@@ -292,6 +291,8 @@ function processData(){
     });
   });
 
+  // Then work on the Gong call data
+
   var unitFilter = [];
   $(".unitFilter").each(function() {
     if (!document.getElementById(this.id).checked) {
@@ -506,7 +507,22 @@ function processData(){
           <span class='text-muted'>${team.avgInteractivity.toFixed(2)}</span>
         </li>
       </ul>
-      <a class='text-muted' style='cursor:pointer;' onclick='new CSVExport(jsonGongData.allCallsResponse);'>🗂 Download call history &#187;</a>
+      <div><a class='text-muted' style='cursor:pointer;' onclick='new CSVExport(jsonGongData.allCallsResponse);'>🗂 Download call history &#187;</a></div>
+      <ul class='list-group mb-3'>
+        <li class='list-group-item d-flex justify-content-between lh-condensed'>
+          <div>
+            <h6 class='my-0'>Number of question requests</h6>
+            <small class='text-muted'>Total opportunity dollars touched</small>
+          </div>
+          <span class='text-muted'>${addCommas(team.numberOfQuestionRequests)}</span>
+        </li>
+        <li class='list-group-item d-flex justify-content-between lh-condensed'>
+          <div>
+            <h6 class='my-0'>MRR influenced</h6>
+          </div>
+          <span class='text-muted'>$${addCommas(team.questionValue.toFixed(2))}</span>
+        </li>
+      </ul>
     </div>
   `);
 
