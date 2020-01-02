@@ -290,7 +290,7 @@ function processData(){
       }
     });
 
-    var questionOrgUsageString == '';
+    var questionOrgUsageString = '';
     $.each(team.questionOrgUsage, function( index, value ) {
       questionOrgUsageString += `${index}: ${value}. `;
     });
