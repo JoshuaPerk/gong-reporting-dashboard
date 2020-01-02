@@ -134,6 +134,19 @@
         };
       };
 
+      function isNumber (value) {
+        if (typeof value !== 'number') {
+          return false
+        }
+        if (value !== Number(value)) {
+          return false
+        }
+        if (Number.isFinite(value) === false) {
+          return false
+        }
+        return true
+      }
+
       function handleClientLoad() {
         gapi.load('client:auth2', initClient);
       }
@@ -186,9 +199,11 @@
           range: 'Questions!A2:I',
         }).then(function(response) {
           response.result.values.forEach(function(question){
-            console.log(question[0]);
+            console.log(question[6]);
             team.questionOwners[question[1]] = (team.questionOwners[question[1]] || 1) + 1;
-            team.questionsValue += Math.abs(parseFloat(question[6]));
+            if (isNumber(parseFloat(question[6]))) {
+              team.questionsValue += Math.abs(parseFloat(question[6]));
+            }
           });
         }, function(response) {
           appendPre('Error: ' + response.result.error.message);
