@@ -319,7 +319,7 @@ function processData(){
         }
         team.securityOwners[security[1]] = (team.securityOwners[security[1]] || 1) + 1;
         if (isNumber(parseFloat(Number(security[7].replace(/[^0-9.-]+/g,""))))) {
-          team.questionValue += Math.abs(parseFloat(Number(security[7].replace(/[^0-9.-]+/g,""))));
+          team.securityValue += Math.abs(parseFloat(Number(security[7].replace(/[^0-9.-]+/g,""))));
         }
       });
 
@@ -559,6 +559,21 @@ function processData(){
             <h6 class='my-0'>MRR influenced via question requests</h6>
           </div>
           <span class='text-muted'>$${addCommas(team.questionValue.toFixed(2))}</span>
+        </li>
+      </ul><br>
+      <ul class='list-group mb-3'>
+        <li class='list-group-item d-flex justify-content-between lh-condensed'>
+          <div>
+            <h6 class='my-0'>Number of security requests</h6>
+            <small class='text-muted'>${securityOrgUsageString}</small>
+          </div>
+          <span class='text-muted'>${addCommas(team.numberOfSecurityRequests)}</span>
+        </li>
+        <li class='list-group-item d-flex justify-content-between lh-condensed'>
+          <div>
+            <h6 class='my-0'>MRR influenced via security requests</h6>
+          </div>
+          <span class='text-muted'>$${addCommas(team.securityValue.toFixed(2))}</span>
         </li>
       </ul>
     </div>
