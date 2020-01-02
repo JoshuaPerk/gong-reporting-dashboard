@@ -200,13 +200,15 @@
         }).then(function(response) {
           team.numberOfQuestionRequests = response.result.values.length;
           response.result.values.forEach(function(question){
-            console.log(question[6]);
             team.questionOwners[question[1]] = (team.questionOwners[question[1]] || 1) + 1;
             if (isNumber(parseFloat(Number(question[6].replace(/[^0-9.-]+/g,""))))) {
               team.questionsValue += Math.abs(parseFloat(Number(question[6].replace(/[^0-9.-]+/g,""))));
             }
             if (question[5] != null && question[5] != "" && question[5] != "_left blank_ ") {
               team.questionsWithOrgID++;
+              console.log("Success: ", question[5]);
+            } else {
+            console.log("Fail: ", question[5]);
             }
           });
         }, function(response) {
