@@ -269,7 +269,29 @@ function resetDataLayer(){
   });
 };
 function processData(){
-  getQuestionRequests();
+  // Start by heading to Google Sheets and grabbing question requests
+  gapi.client.sheets.spreadsheets.values.get({
+    spreadsheetId: '13q20Tw_8yrH0fDMnFZU-_5OoiJgIT8zW1-_IOA1IZxk',
+    range: 'Questions!A2:I',
+  }).then(function(response) {
+    team.numberOfQuestionRequests = response.result.values.length;
+    response.result.values.forEach(function(question){
+      var userLookup = team.users.find(obj => {
+        return obj.slackID == question[1]
+      });
+      if (userLookup) {
+        team.questionOrgUsage[userLookup.org] = (team.questionOrgUsage[userLookup.org] || 1) + 1;
+        team.questionUnitUsage[userLookup.unit] = (team.questionUnitUsage[userLookup.unit] || 1) + 1;
+      } else {
+        console.log('Could not map user: ', question[1]);
+      }
+      team.questionOwners[question[1]] = (team.questionOwners[question[1]] || 1) + 1;
+      if (isNumber(parseFloat(Number(question[6].replace(/[^0-9.-]+/g,""))))) {
+        team.questionValue += Math.abs(parseFloat(Number(question[6].replace(/[^0-9.-]+/g,""))));
+      }
+    });
+  });
+  
   var unitFilter = [];
   $(".unitFilter").each(function() {
     if (!document.getElementById(this.id).checked) {
@@ -885,7 +907,6 @@ function updateSigninStatus(isSignedIn) {
   if (isSignedIn) {
     authorizeButton.style.display = 'none';
     dataForm.style.display = 'block';
-    getQuestionRequests();
   } else {
     authorizeButton.style.display = 'block';
     dataForm.style.display = 'none';
@@ -894,29 +915,4 @@ function updateSigninStatus(isSignedIn) {
 
 function handleAuthClick(event) {
   gapi.auth2.getAuthInstance().signIn();
-}
-
-
-function getQuestionRequests() {
-  gapi.client.sheets.spreadsheets.values.get({
-    spreadsheetId: '13q20Tw_8yrH0fDMnFZU-_5OoiJgIT8zW1-_IOA1IZxk',
-    range: 'Questions!A2:I',
-  }).then(function(response) {
-    team.numberOfQuestionRequests = response.result.values.length;
-    response.result.values.forEach(function(question){
-      var userLookup = team.users.find(obj => {
-        return obj.slackID == question[1]
-      });
-      if (userLookup) {
-        team.questionOrgUsage[userLookup.org] = (team.questionOrgUsage[userLookup.org] || 1) + 1;
-        team.questionUnitUsage[userLookup.unit] = (team.questionUnitUsage[userLookup.unit] || 1) + 1;
-      } else {
-        console.log('Could not map user: ', question[1]);
-      }
-      team.questionOwners[question[1]] = (team.questionOwners[question[1]] || 1) + 1;
-      if (isNumber(parseFloat(Number(question[6].replace(/[^0-9.-]+/g,""))))) {
-        team.questionValue += Math.abs(parseFloat(Number(question[6].replace(/[^0-9.-]+/g,""))));
-      }
-    });
-  });
 }
