@@ -289,7 +289,6 @@ function processData(){
         team.questionValue += Math.abs(parseFloat(Number(question[6].replace(/[^0-9.-]+/g,""))));
       }
     });
-  });
 
   // Then work on the Gong call data
 
@@ -875,6 +874,7 @@ function processData(){
   $([document.documentElement, document.body]).animate({
     scrollTop: $("#results").offset().top
   }, 2000);
+  });
 };
 function addCommas(nStr){
   nStr += '';
