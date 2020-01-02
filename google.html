@@ -24,80 +24,6 @@
       var signoutButton = document.getElementById('signout_button');
       let team;
 
-      function handleClientLoad() {
-        gapi.load('client:auth2', initClient);
-      }
-
-      function initClient() {
-        gapi.client.init({
-          apiKey: API_KEY,
-          clientId: CLIENT_ID,
-          discoveryDocs: DISCOVERY_DOCS,
-          scope: SCOPES
-        }).then(function () {
-          gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
-          updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-          authorizeButton.onclick = handleAuthClick;
-          signoutButton.onclick = handleSignoutClick;
-        }, function(error) {
-          appendPre(JSON.stringify(error, null, 2));
-        });
-      }
-
-      function updateSigninStatus(isSignedIn) {
-        if (isSignedIn) {
-          authorizeButton.style.display = 'none';
-          signoutButton.style.display = 'block';
-          getQuestionRequests();
-        } else {
-          authorizeButton.style.display = 'block';
-          signoutButton.style.display = 'none';
-        }
-      }
-
-      function handleAuthClick(event) {
-        gapi.auth2.getAuthInstance().signIn();
-      }
-
-      function handleSignoutClick(event) {
-        gapi.auth2.getAuthInstance().signOut();
-      }
-
-      function appendPre(message) {
-        var pre = document.getElementById('content');
-        var textContent = document.createTextNode(message + '\n');
-        pre.appendChild(textContent);
-      }
-
-      function getQuestionRequests() {
-        resetDataLayer();
-        gapi.client.sheets.spreadsheets.values.get({
-          spreadsheetId: '13q20Tw_8yrH0fDMnFZU-_5OoiJgIT8zW1-_IOA1IZxk',
-          range: 'Questions!A2:I',
-        }).then(function(response) {
-          var range = response.result;
-          if (range.values.length > 0) {
-            console.log('Made it here.');
-            range.values.forEach(function(question){
-              console.log(question[0]);
-              console.log('And here');
-            });
-          } else {
-            appendPre('No data found.');
-          }
-        }, function(response) {
-          appendPre('Error: ' + response.result.error.message);
-        });
-      }
-
-    </script>
-
-    <script async defer src="https://apis.google.com/js/api.js"
-      onload="this.onload=function(){};handleClientLoad()"
-      onreadystatechange="if (this.readyState === 'complete') this.onload()">
-
-
-
       function resetDataLayer(){
         team = {
           "numberOfQuestionRequests": 0,
@@ -208,6 +134,77 @@
         };
       };
 
+      function handleClientLoad() {
+        gapi.load('client:auth2', initClient);
+      }
+
+      function initClient() {
+        gapi.client.init({
+          apiKey: API_KEY,
+          clientId: CLIENT_ID,
+          discoveryDocs: DISCOVERY_DOCS,
+          scope: SCOPES
+        }).then(function () {
+          gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+          updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+          authorizeButton.onclick = handleAuthClick;
+          signoutButton.onclick = handleSignoutClick;
+        }, function(error) {
+          appendPre(JSON.stringify(error, null, 2));
+        });
+      }
+
+      function updateSigninStatus(isSignedIn) {
+        if (isSignedIn) {
+          authorizeButton.style.display = 'none';
+          signoutButton.style.display = 'block';
+          getQuestionRequests();
+        } else {
+          authorizeButton.style.display = 'block';
+          signoutButton.style.display = 'none';
+        }
+      }
+
+      function handleAuthClick(event) {
+        gapi.auth2.getAuthInstance().signIn();
+      }
+
+      function handleSignoutClick(event) {
+        gapi.auth2.getAuthInstance().signOut();
+      }
+
+      function appendPre(message) {
+        var pre = document.getElementById('content');
+        var textContent = document.createTextNode(message + '\n');
+        pre.appendChild(textContent);
+      }
+
+      function getQuestionRequests() {
+        resetDataLayer();
+        gapi.client.sheets.spreadsheets.values.get({
+          spreadsheetId: '13q20Tw_8yrH0fDMnFZU-_5OoiJgIT8zW1-_IOA1IZxk',
+          range: 'Questions!A2:I',
+        }).then(function(response) {
+          var range = response.result;
+          if (range.values.length > 0) {
+            console.log('Made it here.');
+            range.values.forEach(function(question){
+              console.log(question[0]);
+              console.log('And here');
+            });
+          } else {
+            appendPre('No data found.');
+          }
+        }, function(response) {
+          appendPre('Error: ' + response.result.error.message);
+        });
+      }
+
+    </script>
+
+    <script async defer src="https://apis.google.com/js/api.js"
+      onload="this.onload=function(){};handleClientLoad()"
+      onreadystatechange="if (this.readyState === 'complete') this.onload()">
     </script>
   </body>
 </html>
