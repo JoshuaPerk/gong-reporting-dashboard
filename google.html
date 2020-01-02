@@ -188,6 +188,7 @@
           response.result.values.forEach(function(question){
             console.log(question[0]);
             team.questionOwners[question[1]] = (team.questionOwners[question[1]] || 1) + 1;
+            team.questionsValue += Math.abs(question[6]);
           });
         }, function(response) {
           appendPre('Error: ' + response.result.error.message);
