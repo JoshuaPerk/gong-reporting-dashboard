@@ -14,17 +14,10 @@
     <pre id="content" style="white-space: pre-wrap;"></pre>
 
     <script type="text/javascript">
-      // Client ID and API key from the Developer Console
       var CLIENT_ID = '393986627865-du66b48n8dtc1iscfnqh4olp1qp47otk.apps.googleusercontent.com';
       var API_KEY = 'AIzaSyC4L_BND_f8ApeMY4_8sLNs7uKhPeCX4ac';
-
-      // Array of API discovery doc URLs for APIs used by the quickstart
       var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
-
-      // Authorization scopes required by the API; multiple scopes can be
-      // included, separated by spaces.
       var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
-
       var authorizeButton = document.getElementById('authorize_button');
       var signoutButton = document.getElementById('signout_button');
 
@@ -101,20 +94,22 @@
 
       /**
        * Print the names and majors of students in a sample spreadsheet:
-       * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
+       * https://docs.google.com/spreadsheets/d/13q20Tw_8yrH0fDMnFZU-_5OoiJgIT8zW1-_IOA1IZxk/edit
        */
+
+
       function listMajors() {
         gapi.client.sheets.spreadsheets.values.get({
-          spreadsheetId: '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms',
-          range: 'Class Data!A2:E',
+          spreadsheetId: '13q20Tw_8yrH0fDMnFZU-_5OoiJgIT8zW1-_IOA1IZxk',
+          range: 'Questions!A2:I',
         }).then(function(response) {
           var range = response.result;
           if (range.values.length > 0) {
-            appendPre('Name, Major:');
+            appendPre('Request date,	Request by,	User ID,	Business unit,	Account name,	Org ID,	Forecasted MRR,	Question,	Answered by:');
             for (i = 0; i < range.values.length; i++) {
               var row = range.values[i];
               // Print columns A and E, which correspond to indices 0 and 4.
-              appendPre(row[0] + ', ' + row[4]);
+              appendPre(row[0] + ', ' + row[1] + ', ' + row[2] + ', ' + row[3] + ', ' + row[4] + ', ' + row[5] + ', ' + row[6] + ', ' + row[7]);
             }
           } else {
             appendPre('No data found.');
