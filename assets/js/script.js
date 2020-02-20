@@ -1,6 +1,6 @@
 let jsonGongData, filterResult, team;
 let labels, data, filterArray = [];
-let baseURL = "https://app.gong.io/calls/ajax/calls?";
+let baseURL = "https://app.gong.io/calls/ajax/calls";
 let companyId = "3568831574419877865";
 let workspaceId = "2051577397987143168";
 let pageSize = 5000;
@@ -69,10 +69,10 @@ $('#generateURL').click(function(){
   if (filterArray.length) {
     filterResult = `"search":{"type":"And","filters":[${filterArray}]}`;
   }
-  $("#gongURL").val(`${baseURL}?company-id=${companyId}?workspace-id=${workspaceId}&pageSize=${pageSize}&offset=${pageOffset}&callSearch={${filterResult}}`);
+  $("#gongURL").val(`${baseURL}?company-id=${companyId}&workspace-id=${workspaceId}&pageSize=${pageSize}&offset=${pageOffset}&callSearch={${filterResult}}`);
     $("#gongURL").select();
     document.execCommand("copy");
-    window.open(`https://app.gong.io/calls/ajax/calls?company-id=${companyId}&pageSize=${pageSize}&offset=${pageOffset}&callSearch={${filterResult}}`);
+    window.open(`${baseURL}?company-id=${companyId}&workspace-id=${workspaceId}&pageSize=${pageSize}&offset=${pageOffset}&callSearch={${filterResult}}`);
     $('#inputGongData').focus();
 });
 $('#processData').click(function(){
